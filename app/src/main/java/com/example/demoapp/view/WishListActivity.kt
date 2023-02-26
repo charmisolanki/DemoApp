@@ -8,16 +8,19 @@ import androidx.appcompat.app.AppCompatActivity
 import com.example.demoapp.ProductApplication
 import com.example.demoapp.ProductClickListener
 import com.example.demoapp.R
-import kotlinx.android.synthetic.main.fragment_wish_list.*
+import com.example.demoapp.databinding.FragmentWishListBinding
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 
 class WishListActivity : AppCompatActivity() , ProductClickListener {
 
+    private lateinit var binding: FragmentWishListBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.fragment_wish_list)
+        binding = FragmentWishListBinding.inflate(layoutInflater)
+        setContentView(binding.root)
         getWishListProducts()
     }
 
@@ -28,7 +31,7 @@ class WishListActivity : AppCompatActivity() , ProductClickListener {
             val wishListProducts = repository.getWishListProduct()
 
             if(wishListProducts.isNotEmpty())
-            wishListView.adapter = WishListAdapter(wishListProducts,this@WishListActivity)
+                binding.wishListView.adapter = WishListAdapter(wishListProducts,this@WishListActivity)
             else
                 Toast.makeText(this@WishListActivity, "No product added to wishlist !!", Toast.LENGTH_SHORT).show()
         }

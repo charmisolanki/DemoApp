@@ -5,9 +5,7 @@ import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import com.example.demoapp.api.ProductListService
 import com.example.demoapp.db.ProductDatabase
-import com.example.demoapp.models.ProductList
 import com.example.demoapp.models.ProductListItem
-import kotlin.math.log
 
 class ProductRepository(private val productListService: ProductListService , private val productDatabase: ProductDatabase) {
 
@@ -28,13 +26,12 @@ class ProductRepository(private val productListService: ProductListService , pri
                 val products: List<ProductListItem> = result.body()!!
                 productsLiveData.postValue(products) // updating UI
                 productDatabase.productDao().addProducts(products) // storing data in database
-                Log.d("charmi - from api", products.toString())
 
             }
         } else {
                 val products = productDatabase.productDao().getProducts()
                 productsLiveData.postValue(products)
-            Log.d("charmi - from database", products.toString())
+
         }
     }
 

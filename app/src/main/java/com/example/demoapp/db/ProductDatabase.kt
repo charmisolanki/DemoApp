@@ -1,13 +1,11 @@
 package com.example.demoapp.db
 
 import android.content.Context
-import androidx.room.Database
-import androidx.room.Room
-import androidx.room.RoomDatabase
-import com.example.demoapp.models.ProductList
+import androidx.room.*
 import com.example.demoapp.models.ProductListItem
 
 @Database(entities = [ProductListItem::class], version = 1)
+@TypeConverters(Converters::class)
 abstract class ProductDatabase : RoomDatabase() {
     abstract fun productDao() : ProductDao
 

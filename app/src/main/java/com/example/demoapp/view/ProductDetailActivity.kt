@@ -5,14 +5,17 @@ import android.os.Bundle
 import com.bumptech.glide.Glide
 import com.example.demoapp.ProductApplication
 import com.example.demoapp.R
+import com.example.demoapp.databinding.FragmentProductDeatilBinding
 import com.example.demoapp.models.ProductListItem
-import kotlinx.android.synthetic.main.activity_product_deatil.*
 import kotlinx.coroutines.*
 
 class ProductDetailActivity : AppCompatActivity() {
+
+    private lateinit var binding: FragmentProductDeatilBinding
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_product_deatil)
+        binding = FragmentProductDeatilBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
         val id = intent?.getIntExtra("productId", 0)
 
@@ -35,16 +38,16 @@ class ProductDetailActivity : AppCompatActivity() {
     }
 
     private fun setData(product: ProductListItem?) {
-        tv_title.text = product?.title
-        tv_description.text = product?.description
-        tv_price.text = "Price - ${getString(R.string.rupee_symbol)} ${product?.price}"
+        binding.tvTitle.text = product?.title
+        binding.tvDescription.text = product?.description
+        binding.tvPrice.text = "Price - ${getString(R.string.rupee_symbol)} ${product?.price}"
 
         if (product?.image !== null) {
             Glide.with(this)
                 .load(product.image)
-                .into(iv_product)
+                .into(binding.ivProduct)
         } else {
-            iv_product.setImageResource(R.drawable.ic_launcher_foreground)
+            binding.ivProduct.setImageResource(R.drawable.ic_launcher_foreground)
         }
     }
 }

@@ -15,5 +15,6 @@ data class ProductListItem(
     val image: String,
     val price: Double,
     val title: String,
+    val rating: Rating,
     var isWishListed: Int    // 1 - added , - 0 not added
 )
