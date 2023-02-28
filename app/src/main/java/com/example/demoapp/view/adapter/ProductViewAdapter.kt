@@ -1,14 +1,16 @@
-package com.example.demoapp.view
+package com.example.demoapp.view.adapter
 
+import android.content.Context
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import androidx.recyclerview.widget.RecyclerView.ViewHolder
 import com.example.demoapp.ProductClickListener
+import com.example.demoapp.R
 import com.example.demoapp.databinding.ItemProductViewBinding
 import com.example.demoapp.models.ProductListItem
 
-class ProductViewAdapter(private val clickListener: ProductClickListener) :
+class ProductViewAdapter(private val context: Context?, private val clickListener: ProductClickListener) :
     RecyclerView.Adapter<ProductViewAdapter.ProductViewHolder>() {
 
     inner class ProductViewHolder(val binding: ItemProductViewBinding) : ViewHolder(binding.root)
@@ -26,8 +28,10 @@ class ProductViewAdapter(private val clickListener: ProductClickListener) :
         val product = products[position]
 
         (holder.binding).apply {
-            tvTitle.text = product.title
-            tvDescription.text = product.description
+            val price = "${context?.getString(R.string.rupee_symbol)} ${product?.price}"
+            tvTitle.text = price
+            tvPrice.text = product.description
+            ratingBar.rating = product.rating.rate.toFloat()
             cbWishList.isChecked = product.isWishListed == 1
 
             cbWishList.setOnCheckedChangeListener { checkBox, isChecked ->

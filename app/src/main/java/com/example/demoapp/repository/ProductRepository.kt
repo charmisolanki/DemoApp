@@ -14,10 +14,9 @@ class ProductRepository(private val productListService: ProductListService , pri
     val productData: LiveData<List<ProductListItem>>
     get() = productsLiveData
 
-    // get all product list
     suspend fun getProductList(limit: Int){
 
-        /* if database empty */
+        /* checking if database empty then call api else get product list from database*/
         if (productDatabase.productDao().getProducts().isEmpty()) {
 
             val result = productListService.getProductList(limit)

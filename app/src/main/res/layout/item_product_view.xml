@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="8dp"
@@ -16,7 +17,7 @@
         <TextView
             android:id="@+id/tv_title"
             android:textColor="@color/black"
-            android:textSize="18dp"
+            android:textSize="18sp"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/cb_wishList"
@@ -24,16 +25,26 @@
             android:layout_height="wrap_content"/>
 
         <TextView
-            android:id="@+id/tv_description"
+            android:id="@+id/tv_price"
             android:textColor="@android:color/darker_gray"
-            android:textSize="12dp"
-            android:maxLines="3"
+            android:textSize="12sp"
             android:ellipsize="end"
             app:layout_constraintTop_toBottomOf="@+id/tv_title"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toStartOf="@+id/cb_wishList"
             android:layout_width="0dp"
-            android:justificationMode="inter_word"
+            android:layout_height="wrap_content" />
+
+        <androidx.appcompat.widget.AppCompatRatingBar
+            android:id="@+id/rating_bar"
+            style="@style/Widget.AppCompat.RatingBar.Small"
+            android:progressTint="#ffff8800"
+            android:secondaryProgressTint="#ffff8800"
+            android:numStars="5"
+            android:padding="4dp"
+            app:layout_constraintTop_toBottomOf="@+id/tv_price"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"/>
 
         <CheckBox
@@ -42,6 +53,7 @@
             app:useMaterialThemeColors="false"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
             android:layout_width="48dp"
             android:layout_height="48dp"/>
 

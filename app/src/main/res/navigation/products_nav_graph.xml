@@ -15,7 +15,11 @@
     <fragment
         android:id="@+id/productDetailViewFragment"
         android:name="com.example.demoapp.view.fragments.ProductDetailViewFragment"
-        android:label="ProductDetailViewFragment" />
+        android:label="ProductDetailViewFragment" >
+        <argument
+            android:name="productId"
+            app:argType="integer" />
+    </fragment>
     <fragment
         android:id="@+id/wishListProductsFragment"
         android:name="com.example.demoapp.view.fragments.WishListProductsFragment"
